@@ -1,7 +1,59 @@
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">
+    Prueba técnica - Estudio Faser
+  </a>
+
+</nav>
+
 <div class="container">
-	<h1>Prueba técnica - Estudio Faser</h1>
-	<h2>Listado de tareas</h2>
-	<ol>
-		<li *ngFor="let tarea of tareas">{{tarea.titulo}} ({{tarea.minutos}} minutos)</li>
-	</ol>
+  <div class="row">
+    <div class="col-md-8">
+    <table class="table table-striped table-bordered table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th class="th-sm">
+            id
+          </th>
+          <th class="th-sm">
+            titulo
+          </th>
+          <th class="th-sm">
+            minutos
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tarea of tareaArray"
+          (click)="openForEdit(tarea)"
+          [class.active]="tarea == selectedTarea">
+        <td> <span class="badge badge-primary"> {{tarea.id}}</span></td>
+        <td> {{tarea.titulo}}</td>
+        <td>{{tarea.minutos}}</td>
+
+      </tr>
+      </tbody>
+
+    </table>
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="card-title">
+            inserta una nueva tarea
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedTarea.titulo" placeholder="inseta una nueva tarea"/>
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedTarea.minutos" placeholder="ingresa cantidad de minutos"/>
+          </div>
+          <button (click)="addOrEdit()" class="btn btn-primary"> Submit</button>
+          <button *ngIf="selectedTarea.id !==0" class="btn btn-danger ml-2"
+                  (click)="delete()">Eliminar</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+  <p class="parrafo1"> Para Eliminar o editar una tarea solo tienes que seleccionarla </p>
+    </div>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 export class Tarea {
-    constructor(
-        public id: number,
-        public titulo: string,
-        public minutos: number,
-    ){}
+
+        public id: number = 0;
+        public titulo: string;
+        public minutos: number;
+
 }
